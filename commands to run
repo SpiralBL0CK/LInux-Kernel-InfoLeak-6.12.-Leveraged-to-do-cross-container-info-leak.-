@@ -2,7 +2,7 @@
 sudo docker rm -f victim_db 2>/dev/null
 
 #needs to test if we remove --privileged and run --device=/dev/udmabuf affect the exploit ??
-sudo docker run -d --name victim_db --privileged -e POSTGRES_PASSWORD=CTF_FLAG{real_hugepage_leak_2024}   -e SECRET_API_KEY=sk-live-DEADBEEF1337CAFE   postgres:latest -c huge_pages=try -c shared_buffers=256MB
+sudo docker run -d --name victim_db --device=/dev/udmabuf -e POSTGRES_PASSWORD=CTF_FLAG{real_hugepage_leak_2024}   -e SECRET_API_KEY=sk-live-DEADBEEF1337CAFE   postgres:latest -c huge_pages=try -c shared_buffers=256MB
 
 sudo docker run -it --rm --device=/dev/udmabuf  -v ~/Desktop:/mnt ubuntu:24.04 bash
 
